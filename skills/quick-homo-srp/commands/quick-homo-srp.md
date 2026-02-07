@@ -53,7 +53,7 @@ Interpret the user's natural language input to determine:
 - Title uses snake_case. If not provided in the argument, ask the user.
 - **Language**: Default to the user's session language. Override if explicitly requested:
   - e.g., "in English", "English prompt", "日本語で", "en français" etc.
-- **Reasoning level**: Default is `xhigh`. Detect from natural language:
+- **Reasoning level**: Default is Codex CLI default (recommended: `xhigh`). Detect from natural language:
   - `medium`: "medium", "ミディアム"
   - `high`: "high", "ハイ"
   - `xhigh`: "xhigh", "extra high", "extreme high", "extremely high", "エクストラハイ"
@@ -71,7 +71,7 @@ Extract from the argument:
 | **models + counts** | Remaining text after `@path` | Codex CLI default x4 |
 | **title** | Derive from filename | e.g., `20260205_srp_parser_solver_prompt.md` → `srp_parser_solver` |
 | **language** | Explicit request (e.g., "in English") | User's session language |
-| **reasoning** | "medium", "high", "xhigh" etc. | `xhigh` (default) |
+| **reasoning** | "medium", "high", "xhigh" etc. | Codex CLI default (recommended: `xhigh`) |
 
 **Output folder**: Always `srp_sessions/YYYYMMDD_title/` (same as Generate mode)
 
@@ -188,10 +188,10 @@ PROMPT_EOF
 | `--full-auto` | Sandboxed auto-execution | Yes | |
 | `-C DIR` | Working directory | Yes | `-C "$PROJECT_ROOT"` |
 | `-m MODEL` | Model selection | No (omit to use Codex CLI default) | `-m gpt-5.2` |
-| `-c model_reasoning_effort` | Reasoning level | No (default: `xhigh`) | `-c model_reasoning_effort="xhigh"` |
+| `-c model_reasoning_effort` | Reasoning level | No (omit to use Codex CLI default; recommended: `xhigh`) | `-c model_reasoning_effort="xhigh"` |
 | `-` (trailing) | Read prompt from stdin | Yes | Required when using heredoc |
 
-**Reasoning level values**: `medium`, `high`, `xhigh` (default: `xhigh`)
+**Reasoning level values**: `medium`, `high`, `xhigh` (Codex CLI default if omitted; recommended: `xhigh`)
 
 **Note on `-o` option**:
 The `-o FILE` (output-last-message) option exists but is not currently used.
@@ -265,5 +265,5 @@ After launching all instances:
 - **No auto-analysis**: After completion, the user manually reviews and synthesizes.
 - **No timeout**: If an instance hangs, the user kills it manually.
 - **MCP servers**: Do not disable. Codex config already has Serena/Cipher/Sequential.
-- **Reasoning effort**: Configurable via natural language (`medium`, `high`, `xhigh`). Default: `xhigh`.
+- **Reasoning effort**: Configurable via natural language (`medium`, `high`, `xhigh`). Default: Codex CLI default (recommended: `xhigh`).
 - **SRP integrity**: §1-§7 are identical across instances. Only §8 (output path) differs.

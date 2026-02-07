@@ -44,7 +44,7 @@ Restart Claude Code (or start a new session) — `/srp` and `/quick-homo-srp` wi
 | Output path | `srp_sessions/` | All path references in `commands/*.md` |
 | Default model | Codex CLI default x4 | `commands/quick-homo-srp.md` defaults |
 | Prompt language | Japanese | Language section in `commands/*.md` |
-| Reasoning level | `xhigh` | `commands/quick-homo-srp.md` reasoning parameter |
+| Reasoning level | Codex CLI default (recommended: `xhigh`) | `commands/quick-homo-srp.md` reasoning parameter |
 
 Changing the output path is the most common customization. Search for `srp_sessions` in the skill files and replace with your preferred path.
 
@@ -111,7 +111,7 @@ Claude Codeを再起動（またはセッションを新規開始）すれば、
 | 出力パス | `srp_sessions/` | 各 `commands/*.md` 内のパス定義を一括置換 |
 | デフォルトモデル | Codex CLIのデフォルト x4 | `commands/quick-homo-srp.md` 内のデフォルト値 |
 | プロンプト言語 | 日本語 | 各 `commands/*.md` 内の Language セクション |
-| 推論レベル | `xhigh` | `commands/quick-homo-srp.md` 内の reasoning パラメータ |
+| 推論レベル | Codex CLIのデフォルト（推奨: `xhigh`） | `commands/quick-homo-srp.md` 内の reasoning パラメータ |
 
 出力パスの変更が最も一般的です。スキルファイル内で `srp_sessions` を検索し、好みのパスに書き換えてください。
 
