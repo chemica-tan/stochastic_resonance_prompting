@@ -13,7 +13,15 @@ Inspired by **Stochastic Resonance** in physics — adding noise to a weak signa
 
 ## Installation
 
-Copy the contents of `skills/` into your project's `.claude/skills/` directory:
+### Option A: Ask Claude Code to install it
+
+In a Claude Code session, just say:
+
+> Install the SRP skills from https://github.com/chemica-tan/stochastic_resonance_prompting
+
+Claude Code will clone the repo, copy the skill files into `.claude/skills/`, and clean up.
+
+### Option B: Manual
 
 ```bash
 git clone https://github.com/chemica-tan/stochastic_resonance_prompting.git
@@ -69,7 +77,15 @@ Changing the output path is the most common customization. Search for `srp_sessi
 
 ## 導入方法
 
-`skills/` ディレクトリの中身を、あなたのプロジェクトの `.claude/skills/` にコピーします。
+### 方法A: Claude Codeに頼む
+
+Claude Codeのセッションで、こう言うだけです：
+
+> https://github.com/chemica-tan/stochastic_resonance_prompting からSRPスキルをインストールして
+
+リポジトリのクローンからスキルファイルのコピー、後片付けまで全部やってくれます。
+
+### 方法B: 手動
 
 ```bash
 # リポジトリをクローン
