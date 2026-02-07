@@ -39,16 +39,16 @@ Interpret the user's natural language input to determine:
 
 | Parameter | Default | Examples |
 |-----------|---------|----------|
-| **models + counts** | `gpt-5.2-codex` x4 | "codex 3つとgpt-5.2 1つ", "gpt-5.2 x2", "3つ" |
+| **models + counts** | Codex CLI default x4 | "codex 3つとgpt-5.2 1つ", "gpt-5.2 x2", "3つ" |
 | **title** | Ask the user | "calculator_redesign", "smarts_audit" |
 | **language** | Japanese (日本語) | "英語で", "in English", "English prompt" → English |
 | **reasoning** | `xhigh` (extra high) | "medium", "high", "xhigh", "extra high", "extreme high" |
 
 **Parsing rules**:
-- If no model is mentioned, use `gpt-5.2-codex`
+- If no model is mentioned, omit `-m` to use Codex CLI's default model
 - If no count is mentioned, use 4
 - If only a number is given (e.g., "3つ"), use default model with that count
-- "codex" alone means `gpt-5.2-codex`
+- "codex" alone means use Codex CLI default (omit `-m`)
 - Total instances must be 2-8. Warn if outside this range.
 - Title uses snake_case. If not provided in the argument, ask the user.
 - **Language**: Default is Japanese. Detect English request from natural phrases:
@@ -69,7 +69,7 @@ Extract from the argument:
 | Parameter | Source | Default |
 |-----------|--------|---------|
 | **prompt_file** | `@path` (strip the `@`) | Required |
-| **models + counts** | Remaining text after `@path` | `gpt-5.2-codex` x4 |
+| **models + counts** | Remaining text after `@path` | Codex CLI default x4 |
 | **title** | Derive from filename | e.g., `20260205_srp_parser_solver_prompt.md` → `srp_parser_solver` |
 | **language** | "英語で", "in English" etc. | Japanese (default) |
 | **reasoning** | "medium", "high", "xhigh" etc. | `xhigh` (default) |
@@ -92,9 +92,9 @@ Extract from the argument:
 - Example: `srp_sessions/20260205_parser_solver/20260205_parser_solver_srp.md` stays in place if already in sessions folder
 
 **Model name normalization** (for filenames):
-- `gpt-5.2-codex` -> `gpt_5.2_codex`
 - `gpt-5.2` -> `gpt_5.2`
 - `o3` -> `o3`
+- When using Codex CLI default, query the actual model name from the output for filename
 - Replace hyphens and dots with underscores
 
 ## Step 2: Confirm execution plan
@@ -177,20 +177,20 @@ Then launch each Codex CLI instance as a background Bash process.
 ### Codex CLI command format (CRITICAL)
 
 ```bash
-codex exec --full-auto -C "$PROJECT_ROOT" -m MODEL_ID -c model_reasoning_effort="REASONING_LEVEL" - <<'PROMPT_EOF'
+codex exec --full-auto -C "$PROJECT_ROOT" -c model_reasoning_effort="REASONING_LEVEL" - <<'PROMPT_EOF'
 [Full SRP prompt with instance-specific §8]
 PROMPT_EOF
 ```
 
-**Required options**:
-| Option | Purpose | Example |
-|--------|---------|---------|
-| `exec` | Non-interactive mode (REQUIRED) | `codex exec` |
-| `--full-auto` | Sandboxed auto-execution | |
-| `-C DIR` | Working directory | `-C "$PROJECT_ROOT"` |
-| `-m MODEL` | Model selection | `-m gpt-5.2-codex` |
-| `-c model_reasoning_effort` | Reasoning level | `-c model_reasoning_effort="xhigh"` |
-| `-` (trailing) | Read prompt from stdin | Required when using heredoc |
+**Options**:
+| Option | Purpose | Required | Example |
+|--------|---------|----------|---------|
+| `exec` | Non-interactive mode | Yes | `codex exec` |
+| `--full-auto` | Sandboxed auto-execution | Yes | |
+| `-C DIR` | Working directory | Yes | `-C "$PROJECT_ROOT"` |
+| `-m MODEL` | Model selection | No (omit to use Codex CLI default) | `-m gpt-5.2` |
+| `-c model_reasoning_effort` | Reasoning level | No (default: `xhigh`) | `-c model_reasoning_effort="xhigh"` |
+| `-` (trailing) | Read prompt from stdin | Yes | Required when using heredoc |
 
 **Reasoning level values**: `medium`, `high`, `xhigh` (default: `xhigh`)
 
@@ -202,7 +202,7 @@ This may switch to the `-o` approach in the future.
 **WRONG** (will fail):
 ```bash
 # Missing 'exec' subcommand
-codex --model gpt-5.2-codex --full-auto ...
+codex --model gpt-5.2 --full-auto ...
 
 # Non-existent option
 codex exec --output-markdown FILE ...
@@ -211,9 +211,16 @@ codex exec --output-markdown FILE ...
 codex exec --full-auto -m MODEL <<'EOF'
 ```
 
-**CORRECT**:
+**CORRECT** (default model):
 ```bash
-codex exec --full-auto -C "$PROJECT_ROOT" -m gpt-5.2-codex -c model_reasoning_effort="xhigh" - <<'PROMPT_EOF'
+codex exec --full-auto -C "$PROJECT_ROOT" -c model_reasoning_effort="xhigh" - <<'PROMPT_EOF'
+[prompt content with §8 file creation instructions]
+PROMPT_EOF
+```
+
+**CORRECT** (explicit model):
+```bash
+codex exec --full-auto -C "$PROJECT_ROOT" -m gpt-5.2 -c model_reasoning_effort="xhigh" - <<'PROMPT_EOF'
 [prompt content with §8 file creation instructions]
 PROMPT_EOF
 ```
@@ -223,10 +230,11 @@ so Claude can monitor them individually.
 
 ### Model ID mapping
 
-Pass the exact model ID to `-m`:
-- `gpt-5.2-codex` -> `-m gpt-5.2-codex`
+When the user explicitly specifies a model, pass the exact model ID to `-m`:
 - `gpt-5.2` -> `-m gpt-5.2`
 - `o3` -> `-m o3`
+
+When no model is specified, omit `-m` entirely to use Codex CLI's default.
 
 ## Step 5: Monitor and report
 

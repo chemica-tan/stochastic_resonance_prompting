@@ -21,7 +21,7 @@ dispatches it to multiple Codex CLI instances in parallel.
 
 ## Defaults
 
-- **Model**: gpt-5.2-codex x4
+- **Model**: Codex CLI default x4 (omits `-m`; specify explicitly to override)
 - **Instances**: 4
 - All arguments are natural language and optional
 

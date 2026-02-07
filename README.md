@@ -33,7 +33,7 @@ Claude Codeを再起動（またはセッションを新規開始）すれば、
 | 項目 | デフォルト | 変更箇所 |
 |------|-----------|---------|
 | 出力パス | `srp_sessions/` | 各 `commands/*.md` 内のパス定義を一括置換 |
-| デフォルトモデル | `gpt-5.2-codex` x4 | `commands/quick-homo-srp.md` 内のデフォルト値 |
+| デフォルトモデル | Codex CLIのデフォルト x4 | `commands/quick-homo-srp.md` 内のデフォルト値 |
 | プロンプト言語 | 日本語 | 各 `commands/*.md` 内の Language セクション |
 | 推論レベル | `xhigh` | `commands/quick-homo-srp.md` 内の reasoning パラメータ |
 
