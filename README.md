@@ -8,8 +8,8 @@ Inspired by **Stochastic Resonance** in physics — adding noise to a weak signa
 
 | Skill | Description | Dependencies |
 |-------|-------------|--------------|
-| `/srp` | Generate an SRP prompt from session discussion, output one-liners for manual distribution. | None (zero dependencies) |
-| `/quick-homo-srp` | Generate SRP prompt + auto-execute in parallel via Codex CLI. | [Codex CLI](https://github.com/openai/codex) |
+| `/srp` | Generate an SRP prompt from session discussion, output one-liners for distribution to each AI. **Manual.** | None (zero dependencies) |
+| `/quick-homo-srp` | Generate SRP prompt + auto-execute in parallel via Codex CLI. **Auto.** | [Codex CLI](https://github.com/openai/codex) |
 
 ## Installation
 
@@ -36,10 +36,17 @@ Restart Claude Code (or start a new session) — `/srp` and `/quick-homo-srp` wi
 | Prompt language | Japanese | Language section in `commands/*.md` |
 | Reasoning level | `xhigh` | `commands/quick-homo-srp.md` reasoning parameter |
 
+Changing the output path is the most common customization. Search for `srp_sessions` in the skill files and replace with your preferred path.
+
 ## Requirements
 
-- **`/srp` (manual)**: No dependencies. Generates a plain markdown file — copy-paste it into any AI.
-- **`/quick-homo-srp` (auto)**: Requires [Codex CLI](https://github.com/openai/codex). Authenticate via subscription (ChatGPT Plus/Pro/Team/Enterprise) or `OPENAI_API_KEY` environment variable.
+- **`/srp` (manual)**: No dependencies — works with any Claude Code session. The generated prompt is a plain markdown file; copy-paste it into any AI.
+- **`/quick-homo-srp` (auto)**: Requires [Codex CLI](https://github.com/openai/codex). Authenticate via subscription login (ChatGPT Plus/Pro/Team/Enterprise) or `OPENAI_API_KEY` environment variable.
+
+## Related Articles
+
+1. **[note] [Stochastic Resonance Prompting: AI-collaborative refactoring — 1550 to 950 lines in 50 minutes](https://note.com/chemica_tan/n/n92f4ee61a831)** (June 2025, Japanese) — First publication of SRP
+2. **[Zenn] [Sent the same prompt to 4 AIs — discovered answers invisible to any single one](https://zenn.dev/chemica_tan/articles/9e45560a8d3d6a)** (February 2026, Japanese) — SRP in practice
 
 ## License
 
