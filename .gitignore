@@ -1,0 +1,11 @@
+# Everything ignored by default
+*
+
+# Allow these files/directories
+!.gitignore
+!LICENSE
+!README.md
+!skills/
+!skills/**
+!articles/
+!articles/**
