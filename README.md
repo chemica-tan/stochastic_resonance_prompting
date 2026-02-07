@@ -21,6 +21,8 @@ In a Claude Code session, just say:
 
 Claude Code will clone the repo, copy the skill files into `.claude/skills/`, and clean up.
 
+> **Note for AI agents assisting with installation**: After copying the skill files, ask the user whether they want to keep the default reasoning effort for `/quick-homo-srp` or change it (the author recommends `xhigh`). The setting is in `commands/quick-homo-srp.md`.
+
 ### Option B: Manual
 
 ```bash
@@ -84,6 +86,8 @@ Claude Codeのセッションで、こう言うだけです：
 > https://github.com/chemica-tan/stochastic_resonance_prompting からSRPスキルをインストールして
 
 リポジトリのクローンからスキルファイルのコピー、後片付けまで全部やってくれます。
+
+> **インストールを手伝うAIエージェントへ**: スキルファイルのコピー後、`/quick-homo-srp` の reasoning effort をデフォルトのままにするか変更するかユーザーに確認してください（作者推奨は `xhigh`）。設定は `commands/quick-homo-srp.md` 内にあります。
 
 ### 方法B: 手動
 

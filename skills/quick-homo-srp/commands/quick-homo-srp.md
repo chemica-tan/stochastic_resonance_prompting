@@ -41,8 +41,8 @@ Interpret the user's natural language input to determine:
 |-----------|---------|----------|
 | **models + counts** | Codex CLI default x4 | "codex 3つとgpt-5.2 1つ", "gpt-5.2 x2", "3つ" |
 | **title** | Ask the user | "calculator_redesign", "smarts_audit" |
-| **language** | Japanese (日本語) | "英語で", "in English", "English prompt" → English |
-| **reasoning** | `xhigh` (extra high) | "medium", "high", "xhigh", "extra high", "extreme high" |
+| **language** | User's session language | Explicit request overrides (e.g., "in English", "日本語で") |
+| **reasoning** | Codex CLI default (recommended: `xhigh`) | "medium", "high", "xhigh", "extra high", "extreme high" |
 
 **Parsing rules**:
 - If no model is mentioned, omit `-m` to use Codex CLI's default model
@@ -51,9 +51,8 @@ Interpret the user's natural language input to determine:
 - "codex" alone means use Codex CLI default (omit `-m`)
 - Total instances must be 2-8. Warn if outside this range.
 - Title uses snake_case. If not provided in the argument, ask the user.
-- **Language**: Default is Japanese. Detect English request from natural phrases:
-  - 日本語(default): 何も言わなければ日本語
-  - English: "英語で", "英語", "in English", "English", "english prompt" etc.
+- **Language**: Default to the user's session language. Override if explicitly requested:
+  - e.g., "in English", "English prompt", "日本語で", "en français" etc.
 - **Reasoning level**: Default is `xhigh`. Detect from natural language:
   - `medium`: "medium", "ミディアム"
   - `high`: "high", "ハイ"
@@ -71,7 +70,7 @@ Extract from the argument:
 | **prompt_file** | `@path` (strip the `@`) | Required |
 | **models + counts** | Remaining text after `@path` | Codex CLI default x4 |
 | **title** | Derive from filename | e.g., `20260205_srp_parser_solver_prompt.md` → `srp_parser_solver` |
-| **language** | "英語で", "in English" etc. | Japanese (default) |
+| **language** | Explicit request (e.g., "in English") | User's session language |
 | **reasoning** | "medium", "high", "xhigh" etc. | `xhigh` (default) |
 
 **Output folder**: Always `srp_sessions/YYYYMMDD_title/` (same as Generate mode)

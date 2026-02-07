@@ -277,12 +277,12 @@ When composing the prompt from session discussion, follow these rules:
 
 ### Language
 
-- **Default: Japanese.** Write the SRP prompt markdown and the one-liner
-  in Japanese. Technical terms, code identifiers, file paths, and
-  section headings (§1–§8) remain in their original form.
-- **English only when explicitly requested.** If the user says to write
-  in English, switch both the prompt markdown and the one-liner to English.
-  Always keep the two in the same language.
+- **Match the user's language.** Write the SRP prompt markdown and the
+  one-liner in the same language the user is using in the current session.
+  Technical terms, code identifiers, file paths, and section headings
+  (§1–§8) remain in their original form.
+- If the user explicitly requests a specific language, use that instead.
+  Always keep the prompt and the one-liner in the same language.
 
 ### Artifact Safety
 
