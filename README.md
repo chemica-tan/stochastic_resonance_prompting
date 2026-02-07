@@ -9,7 +9,7 @@
 | スキル | 概要 | 依存環境 |
 |--------|------|----------|
 | `/srp` | セッションの議論からSRPプロンプトを生成し、各AIに配布するワンライナーを出力。**手動版**。 | なし（環境依存ゼロ） |
-| `/quick-homo-srp` | SRPプロンプト生成 + Codex CLIで並列自動実行。**自動版**。 | [Codex CLI](https://github.com/openai/codex) + `OPENAI_API_KEY` |
+| `/quick-homo-srp` | SRPプロンプト生成 + Codex CLIで並列自動実行。**自動版**。 | [Codex CLI](https://github.com/openai/codex) |
 
 ## 導入方法
 
@@ -42,7 +42,7 @@ Claude Codeを再起動（またはセッションを新規開始）すれば、
 ## 必要環境
 
 - **`/srp`（手動版）**: 依存なし。Claude Codeがあれば動きます。生成されるプロンプトはただのマークダウンファイルなので、コピペすればどのAIでも使えます。
-- **`/quick-homo-srp`（自動版）**: [Codex CLI](https://github.com/openai/codex) と `OPENAI_API_KEY` 環境変数が必要です。
+- **`/quick-homo-srp`（自動版）**: [Codex CLI](https://github.com/openai/codex) が必要です。認証はサブスクリプション（ChatGPT Plus/Pro/Team/Enterprise）による自動認証、または `OPENAI_API_KEY` 環境変数のいずれかで行えます。
 
 ## 関連記事
 

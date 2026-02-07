@@ -39,7 +39,7 @@ srp_sessions/YYYYMMDD_title/
 ## Prerequisites
 
 - **[Codex CLI](https://github.com/openai/codex)**: OpenAI's CLI tool
-- **OpenAI API key**: Set as environment variable `OPENAI_API_KEY`
+- **Authentication**: Subscription (ChatGPT Plus/Pro/Team/Enterprise) or `OPENAI_API_KEY`
 
 ## Available Commands
 
