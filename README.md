@@ -1,5 +1,54 @@
 # Stochastic Resonance Prompting (SRP)
 
+Send the same prompt to multiple AIs, compare their stochastically varying outputs, and surface structures invisible to any single model.
+
+Inspired by **Stochastic Resonance** in physics — adding noise to a weak signal can paradoxically make it easier to detect. SRP applies this principle to LLM prompting. When all four AIs agree, that's strong consensus. When one diverges, that's a branch point worth investigating. Without comparison, you never realize alternatives existed.
+
+## Skills
+
+| Skill | Description | Dependencies |
+|-------|-------------|--------------|
+| `/srp` | Generate an SRP prompt from session discussion, output one-liners for manual distribution. | None (zero dependencies) |
+| `/quick-homo-srp` | Generate SRP prompt + auto-execute in parallel via Codex CLI. | [Codex CLI](https://github.com/openai/codex) |
+
+## Installation
+
+Copy the contents of `skills/` into your project's `.claude/skills/` directory:
+
+```bash
+git clone https://github.com/chemica-tan/stochastic_resonance_prompting.git
+
+# Manual version only
+cp -r stochastic_resonance_prompting/skills/srp /path/to/your-project/.claude/skills/
+
+# Auto version (optional)
+cp -r stochastic_resonance_prompting/skills/quick-homo-srp /path/to/your-project/.claude/skills/
+```
+
+Restart Claude Code (or start a new session) — `/srp` and `/quick-homo-srp` will be available as slash commands.
+
+## Customization
+
+| Item | Default | Where to change |
+|------|---------|-----------------|
+| Output path | `srp_sessions/` | All path references in `commands/*.md` |
+| Default model | Codex CLI default x4 | `commands/quick-homo-srp.md` defaults |
+| Prompt language | Japanese | Language section in `commands/*.md` |
+| Reasoning level | `xhigh` | `commands/quick-homo-srp.md` reasoning parameter |
+
+## Requirements
+
+- **`/srp` (manual)**: No dependencies. Generates a plain markdown file — copy-paste it into any AI.
+- **`/quick-homo-srp` (auto)**: Requires [Codex CLI](https://github.com/openai/codex). Authenticate via subscription (ChatGPT Plus/Pro/Team/Enterprise) or `OPENAI_API_KEY` environment variable.
+
+## License
+
+[MIT](LICENSE)
+
+---
+
+# Stochastic Resonance Prompting (SRP)
+
 同じプロンプトを複数のAIに投げ、確率的にゆらぐ出力を比較することで、単一AIでは見えない構造を浮かび上がらせる手法です。
 
 物理学の**確率共鳴（Stochastic Resonance）**から着想を得ています。微弱な信号にノイズを加えると、かえって検出しやすくなる——この原理をLLMプロンプティングに応用しました。4つのAIが全員同じことを言えば強い合意、1つだけ違えば検討に値する分岐点。比較しなければ、選択肢があったこと自体に気づけません。
